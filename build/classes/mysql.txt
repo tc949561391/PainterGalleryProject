@@ -1,0 +1,45 @@
+ create table users(id int primary key auto_increment,username varchar(100) not null unique,password varchar(100) not null);
+
+alter table users add manager int  default 0;
+
+create table provider(
+id int primary key auto_increment,
+name varchar(100) not null unique,
+address varchar(100),
+phonenumber char(11),
+manager varchar(10)
+);
+create table goods(
+id int primary key auto_increment,
+name varchar(100) not null unique,
+count int not null,
+salednumber int not null default 0,
+provider_id int,
+price int not null,
+productDate date,
+saveDate date,
+foreign key (provider_id) references provider (id)
+);
+create table pgoods(
+id int primary key auto_increment,
+name varchar(100) not null unique,
+count int not null,
+providerId int,
+providerPrice int not null,
+productDate date,
+saveDate date,
+foreign key (providerId) references provider (id)
+);
+insert into users values(null,'admin','admin',1);
+insert into users values(null,'demo01','demo01',1);
+insert into users values(null,'demo02','demo02',1);
+insert into users values(null,'demo03','demo03',0);
+insert into users values(null,'demo04','demo04',0);
+insert into provider values(null,'供应商1','地址1','1234567890','manager1');
+insert into provider values(null,'供应商2','地址2','1234567890','manager2');
+insert into provider values(null,'供应商3','地址3','1234567890','manager3');
+insert into provider values(null,'供应商4','地址4','1234567890','manager4');
+insert into provider values(null,'供应商5','地址5','1234567890','manager5');
+insert into provider values(null,'供应商6','地址6','1234567890','manager6');
+insert into provider values(null,'供应商7','地址7','1234567890','manager7'),(null,'供应商8','地址8','1234567890','manager8');
+insert into provider values(null,'供应商9','地址9','1234567890','manager9'),(null,'供应商10','地址10','1234567890','manager10');
